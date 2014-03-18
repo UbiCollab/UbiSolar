@@ -22,8 +22,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
 
 import com.sintef_energy.ubisolar.IView.IDeviceView;
@@ -113,18 +115,23 @@ public class DeviceFragment extends Fragment implements LoaderManager.LoaderCall
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //There was some reason I could not create the list view outside of this method
-        final ListView listView = (ListView) getActivity().findViewById(R.id.device_list);
+        final ExpandableListView listView = (ExpandableListView) getActivity().findViewById(R.id.device_list);
         devices = new ArrayList<DeviceModel>();
         //EnergyDataSource.deleteAll(getActivity().getContentResolver());
         //usage = new ArrayList<EnergyUsageModel>();
 
-        adapter = new SimpleCursorAdapter(
+        adapter = new SimpleCursorTreeAdapter(
                 getActivity().getApplicationContext(),
                 R.layout.fragment_device_row,
                 null,
                 new String[]{DeviceModel.DeviceEntry.COLUMN_NAME, DeviceModel.DeviceEntry.COLUMN_DESCRIPTION},
                 new int[]{R.id.row_header, R.id.row_description},
-                CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+                CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER) {
+            @Override
+            protected Cursor getChildrenCursor(Cursor cursor) {
+                return null;
+            }
+        };
 
         listView.setAdapter(adapter);
 
@@ -211,4 +218,10 @@ public class DeviceFragment extends Fragment implements LoaderManager.LoaderCall
 
         //TODO: Show the addusage acivity when clicked
     }*/
+}
+
+private class CategoryTreeAdapter extends SimpleCursorAdapter {
+    CategoryTreeAdapter(){
+        
+    }
 }
