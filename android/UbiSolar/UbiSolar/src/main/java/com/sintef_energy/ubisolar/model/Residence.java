@@ -1,0 +1,81 @@
+package com.sintef_energy.ubisolar.model;
+
+/**
+ * Created by Lars Erik on 18.03.14.
+ */
+public class Residence {
+    private String houseId;
+    private String description;
+    private String status;
+    private int area;
+    private int residents;
+    private int zipCode;
+    private char energyClass;
+
+    public Residence(String houseId,String description, int residents, int area,
+                     int zipCode, char energyClass) {
+        this.houseId = houseId;
+        this.description = description;
+        this.residents = residents;
+        this.area = area;
+        this.zipCode = zipCode;
+        this.energyClass = energyClass;
+        this.status = houseId;
+    }
+
+    public String getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public char getEnergyClass() {
+        return energyClass;
+    }
+
+    public void setEnergyClass(char energyClass) {
+        this.energyClass = energyClass;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(byte zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public int getResidents() {
+        return residents;
+    }
+
+    public void setResidents(byte residents) {
+        this.residents = residents;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
+
+    public String toString() {
+        return getHouseId();
+    }
+
+    public void setStatus(String status) {this.status = status;}
+
+    public String getStatus() {return status;}
+}
